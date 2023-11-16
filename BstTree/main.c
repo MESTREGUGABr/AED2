@@ -14,7 +14,7 @@ int main(int argc, char * argv[]) {
     a = inserir(a, 30);
     a = inserir(a, 2);
     
-    printf("Soma dos pares: %d\n",somaPar(a));
+    //printf("Soma dos pares: %d\n",somaPar(a));
 
     /*printf("PRE-ORDER: ");
     preorder(a);
@@ -22,14 +22,14 @@ int main(int argc, char * argv[]) {
     inorder(a);
     printf("\n");
     */
+    preorder(a);
+    printf("\n");
+    a = podar(a,7);
+    printf("\n");
+    preorder(a);
+    printf("\n");
     
-    /*pai(a,7);
-    printf("\n");
-    pai(a,27);
-    printf("\n");
-    pai(a,9);
-    printf("\n");
-    */
+    
    
     
     

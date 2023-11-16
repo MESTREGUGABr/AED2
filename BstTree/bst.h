@@ -20,6 +20,19 @@ int altura(arvore raiz);
 int busca(arvore raiz, int chave);
 arvore dobro(arvore raiz);
 int somaPar(arvore raiz);
+void reverso(arvore raiz);
+void descendentes(arvore raiz, int chave);
+arvore remover(arvore raiz, int valor);
+int maiorValor(arvore raiz);
+arvore podar(arvore raiz, int valor);
+void podarAuxiliar(arvore raiz);
+void antecessor(arvore raiz);
+
+
+
+
+
+
 
 
 #endif

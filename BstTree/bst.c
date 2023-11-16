@@ -68,16 +68,20 @@ int qtdPar(arvore raiz){
 
 int pai(arvore raiz, int valor){
     if(raiz != NULL){
-        if(raiz->esq->valor == valor || raiz->dir->valor == valor){
-            printf("[%d]", raiz->valor);
+        if(raiz->esq && raiz->esq->valor == valor || raiz->dir && raiz->dir->valor == valor){
+            return raiz->valor;
         } else {
-            pai(raiz->esq,valor);
-            //pai(raiz->dir,valor);
+            if(valor > raiz->valor){
+                
+            return pai(raiz->dir,valor);
+            }
+            else {
+                return pai(raiz->esq,valor);
+            }
         }
-    }
-    
+    } 
 }
-
+    
 int altura(arvore raiz){
     if(raiz == NULL){
         return 0;
@@ -111,8 +115,19 @@ arvore dobro(arvore raiz){
     }
 }
 
-void descendentes(arvore raiz, int chave){
-    
+//Perguntar se inclui o nó pai 
+void descendentes(arvore raiz, int valor){
+    if(raiz != NULL){
+        if(valor == raiz->valor){
+            inorder(raiz->esq);
+            inorder(raiz->dir);
+            printf("\n");
+        } else if (valor > raiz->valor){
+            descendentes(raiz->dir,valor);
+        } else {
+            descendentes(raiz->esq,valor);
+        }
+    }
 }
 
 int somaPar(arvore raiz){
@@ -130,6 +145,80 @@ int somaPar(arvore raiz){
         
     }
     return somador;
+}
+
+void reverso(arvore raiz){
+    if(raiz != NULL){
+        reverso(raiz->dir);
+        printf("[%d]",raiz->valor);
+        reverso(raiz->esq);
+    }
+}
+
+arvore podar(arvore raiz, int valor){
+    if(raiz != NULL){
+        if(raiz->valor == valor){
+            podarAuxiliar(raiz);
+            return NULL;
+        } else if (valor > raiz->valor){
+            raiz->dir = podar(raiz->dir,valor);
+        } else {
+            raiz->esq = podar(raiz->esq,valor);
+        }
+    }
+    return raiz;
+}
+
+void podarAuxiliar(arvore raiz){
+    if(raiz != NULL){
+        podarAuxiliar(raiz->esq);
+        podarAuxiliar(raiz->dir);
+        free(raiz);
+    }
+}
+
+arvore remover(arvore raiz, int valor){
+    arvore temp;
+    if(raiz != NULL){
+        if(raiz->valor == valor){
+            if(raiz->esq != NULL && raiz->dir != NULL){
+                raiz->valor = maiorValor(raiz->esq);
+                remover(raiz->esq,raiz->valor);
+            } else if(raiz->esq != NULL){
+                temp = raiz->esq;
+                free(raiz);
+                return temp;
+            } else if(raiz->dir != NULL){
+                temp = raiz->dir;
+                free(raiz);
+                return temp;
+            } else {
+                free(raiz);
+                return NULL;
+            }
+            
+        } else if (valor > raiz->valor){
+            raiz->dir = remover(raiz->dir,valor);
+        } else {
+            raiz->esq = remover(raiz->esq,valor);
+        }
+    }
+    
+    return raiz;
+}
+
+int maiorValor(arvore raiz){
+    if(raiz != NULL){
+        if (raiz->dir == NULL)
+            return raiz->valor;
+        return maiorValor(raiz->dir);
+    }
+}
+
+void antecessor(arvore raiz, int valor){
+    if(raiz != NULL){
+        if()
+    }
 }
     
 
