@@ -26,7 +26,10 @@ arvore remover(arvore raiz, int valor);
 int maiorValor(arvore raiz);
 arvore podar(arvore raiz, int valor);
 void podarAuxiliar(arvore raiz);
-void antecessor(arvore raiz);
+int antecessor(arvore raiz, int valor);
+
+
+
 
 
 

@@ -215,11 +215,35 @@ int maiorValor(arvore raiz){
     }
 }
 
-void antecessor(arvore raiz, int valor){
-    if(raiz != NULL){
-        if()
+int antecessor(arvore raiz, int valor) {
+    arvore antecessor = NULL;
+
+    while (raiz != NULL) {
+        if (valor > raiz->valor) {
+            antecessor = raiz;
+            raiz = raiz->dir;
+        } else if (valor < raiz->valor) {
+            raiz = raiz->esq;
+        } else {
+            if (raiz->esq != NULL) {
+                raiz = raiz->esq;
+                while (raiz->dir != NULL) {
+                    raiz = raiz->dir;
+                }
+                return raiz->valor;
+            } else {
+                if (antecessor != NULL) {
+                    return antecessor->valor;
+                } else {
+                    return -1; 
+                }
+            }
+        }
     }
+
+    return -1; 
 }
+
     
 
     
